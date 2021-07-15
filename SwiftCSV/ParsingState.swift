@@ -70,6 +70,8 @@ struct ParsingState {
                     parsingField = false
                     innerQuotes = false
                     finishRow()
+                } else if char.isWhitespace {
+                    // ignore
                 } else {
                     appendChar(char)
                 }
@@ -89,6 +91,9 @@ struct ParsingState {
                     parsingQuotes = false
                     innerQuotes = false
                     finishRow()
+                }
+                else if char.isWhitespace {
+                    // ignore
                 } else {
                     throw CSVParseError.quotation(message: "Can't have non-quote here: \(char)")
                 }
